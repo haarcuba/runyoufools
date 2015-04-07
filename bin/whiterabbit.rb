@@ -23,7 +23,7 @@ end
 
 options = OpenStruct.new
 options.pattern = /test/
-options.command = ''
+options.command = nil
 options.retries = 1
 
 parser = OptionParser.new

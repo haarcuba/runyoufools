@@ -30,7 +30,7 @@ class Runner
 	def go
 		@success = true
 		@tests.each do |testFile|
-			test = Test.new( testFile, @options.retries )
+			test = Test.new( testFile, @options.retries, @options.command )
 			test.run
 			key = test.ok ? :pass : :fail
 			@results[ key ].push( test )

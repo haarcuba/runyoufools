@@ -2,10 +2,11 @@ class Test
 	attr_reader :ok
 	attr_reader :trials
 
-	def initialize( testFile, retries )
+	def initialize( testFile, retries, command )
 		@file = testFile	
 		@ok = nil
         @retries = retries
+        @command = command
 	end
 
 	def run
@@ -19,9 +20,12 @@ class Test
 	end
 
 	def _run
-		command = @file
 		log :info, "RUNNING #{@file}"
-		@ok = system( command )
+        if @command
+            @ok = system( "#{@command} #{@file}" )
+        else
+            @ok = system( @file )
+        end
 		log :info,( "#{self}" )
 	end
 
