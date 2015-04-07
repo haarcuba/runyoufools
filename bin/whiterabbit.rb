@@ -1,16 +1,42 @@
 require 'lib/runner.rb'
+require 'optparse'
+require 'ostruct'
+require 'pry'
 
-runner = Runner.new( ARGV )
-start = Time.now
-runner.go
-durationMinutes = "%.2f" % ( ( Time.now - start ) / 60 )
-puts "TESTS OVER - SUMMARY".white.bold
-puts "pass:"
-puts runner.results[ :pass ]
-puts "fail:"
-puts runner.results[ :fail ]
-puts colorize( runner.message )
-puts "#{durationMinutes} minutes."
+def main( options )
+    runner = Runner.new( options )
+    start = Time.now
+    runner.go
+    durationMinutes = "%.2f" % ( ( Time.now - start ) / 60 )
+    say "TESTS OVER - SUMMARY".white.bold
+    say "pass:"
+    say_list runner.results[ :pass ]
+    say "fail:"
+    say_list runner.results[ :fail ]
+    say "====== OVERALL ======"
+    say "#{runner.message}"
+    say "#{durationMinutes} minutes."
 
-log "Story Test run finished (#{durationMinutes} minutes): #{runner.success}"
-exit( runner.success )
+    log :info, "Story Test run finished (#{durationMinutes} minutes): #{runner.success}"
+    exit( runner.success )
+end
+
+options = OpenStruct.new
+options.pattern = /test/
+options.command = ''
+options.retries = 1
+
+parser = OptionParser.new
+parser.banner = "White Rabbit - a test runner"
+parser.on "--pattern=REGEX", "-p", "Pattern (regex) for looking for test files. Defaults to 'test'" do |pattern|
+    options.pattern = Regexp.new pattern
+end
+parser.on "--command=COMMAND", "-c", "command to preceed test file if needed, e.g. if set to 'python', White Rabbit will use 'python test.py' instead of just 'test.py'" do |command|
+    options.command = command
+end
+parser.on "--retries=NUMBER", '-r', 'number of retries (default: 1)' do |retries|
+    options.retries = retries.to_i
+end
+
+parser.parse!
+main( options )

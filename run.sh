@@ -1,2 +1,2 @@
 #!/bin/bash
-ruby -I. bin/whiterabbit.rb
+ruby -I. bin/whiterabbit.rb $@
