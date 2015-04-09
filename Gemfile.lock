@@ -1,9 +1,8 @@
 PATH
   remote: .
   specs:
-    runyoufools (0.1.0)
+    runyoufools (0.1.1)
       colorize
-      subprocess
 
 GEM
   remote: https://rubygems.org/
@@ -17,7 +16,6 @@ GEM
       slop (~> 3.4)
     rake (10.4.2)
     slop (3.6.0)
-    subprocess (1.2.0)
 
 PLATFORMS
   ruby
