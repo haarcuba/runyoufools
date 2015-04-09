@@ -6,7 +6,7 @@ module Runyoufools
 
     def self.colorize_level( text )
         text = text.sub( /info/, "INFO".white.bold )
-        text = text.sub( /error/, "ERROR".red.bold )
+        text = text.sub( /error/, "ERROR".white.bold.on_red )
         text = text.sub( /warn/, "WARN".yellow.bold )
     end
 

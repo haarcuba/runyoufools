@@ -11,12 +11,11 @@ def self.main( options )
     start = Time.now
     runner.go
     durationMinutes = "%.2f" % ( ( Time.now - start ) / 60 )
+    puts "\n\n"
     say "TESTS OVER - SUMMARY".white.bold
-    say "pass:"
     say_list runner.results[ :pass ]
-    say "fail:"
     say_list runner.results[ :fail ]
-    say "====== OVERALL ======"
+    say "====== OVERALL ======".white.bold
     say "#{runner.message}"
     say "#{durationMinutes} minutes."
 

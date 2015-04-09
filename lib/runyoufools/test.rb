@@ -24,15 +24,19 @@ class Test
 	def _run
 		Runyoufools.log :info, "RUNNING #{@file}"
         if @command
-            @ok = system( "#{@command} #{@file}" )
+            toRun = "#{@command} #{@file}"
         else
-            @ok = system( @file )
+            toRun = @file
+        end
+        @ok = system( toRun )
+        if @ok == nil
+            Runyoufools.log :error, "could not execute: #{toRun}"
         end
 		Runyoufools.log :info,( "#{self}" )
 	end
 
 	def to_s
-        result = { true => "OK  ".green.bold, false => "FAIL".red.bold }[ @ok ]
+        result = { true => "OK   ".green.bold, false => "FAIL ".red.bold, nil => "ERROR".white.bold.on_red }[ @ok ]
 		"#{result}: #{@trials} trial(s) : #{@file}"
 	end
 end
