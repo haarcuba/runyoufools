@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>RunYouFools! by haarcuba</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">RunYouFools!</h1>
+      <h2 class="project-tagline">generic, language agnostic system-test runner</h2>
+      <a href="https://github.com/haarcuba/runyoufools" class="btn">View on GitHub</a>
+      <a href="https://github.com/haarcuba/runyoufools/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/haarcuba/runyoufools/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="run-you-fools" class="anchor" href="#run-you-fools" aria-hidden="true"><span class="octicon octicon-link"></span></a>Run You Fools!</h1>
+
+<p>The basic idea behind RunYouFools is that system tests should be simple
+scripts, whose exit code determines their success (or failure).</p>
+
+<p>Most testing framework are more suitable for unit tests. System tests require a broader perspective,
+and a simpler format. I believe that system tests should be readable, self-explanatory scripts that just
+run from top to bottom, e.g. this little bit of Python:</p>
+
+<div class="highlight highlight-python"><pre>    <span class="pl-c"># test_basic_client_server_chat.py</span>
+    <span class="pl-c"># these are the real thing, not Moch objects of any kind</span>
+    server <span class="pl-k">=</span> Server()
+    clinet <span class="pl-k">=</span> client()
+    client.sendMessage( <span class="pl-s"><span class="pl-pds">"</span>what's up, server?<span class="pl-pds">"</span></span> )
+    <span class="pl-k">assert</span> server.response() <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">"</span>I'm OK, how are you?<span class="pl-pds">"</span></span></pre></div>
+
+<p>Different tests should reside in different files, again unlike unit tests.</p>
+
+<p>The purpose of runyoufools is to supply the user with a runner to run his/her tests,
+no matter if these tests are Ruby, Python, C++, Perl - whatever - with appropriate hooks for test setup.</p>
+
+<h1>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h1>
+
+<p>RunYouFools is a ruby gem:</p>
+
+<pre><code>$ gem install runyoufools
+</code></pre>
+
+<p>Once it is installed, you run it:</p>
+
+<pre><code>$ runyoufools --help
+</code></pre>
+
+<p>To get an explanation. Basically, you specify a filename pattern with <code>--pattern</code>,
+which RunYouFools uses to determine which files are tests (all relative the
+current directory). The pattern is a <em>regular expression</em>, <em>NOT</em> a "glob".
+Google regular expressions if you don't know what they are.</p>
+
+<p>So, to run all tests in the <code>test/system</code> directory:</p>
+
+<pre><code>$ runyoufools --pattern test/system/
+</code></pre>
+
+<p>Note that if you do not include the final <code>/</code>, RunYouFools might try to run a file called <code>test/system.log</code>.</p>
+
+<p>The pattern is <em>MANDATORY</em>.</p>
+
+<h1>
+<a id="what-if-i-dont-want-my-test-files-to-be-executable" class="anchor" href="#what-if-i-dont-want-my-test-files-to-be-executable" aria-hidden="true"><span class="octicon octicon-link"></span></a>What if I don't want my test files to be executable?</h1>
+
+<p>No problem, just specify how to run them with the <code>--command</code>. If, for example, your system tests are python scripts in the <code>test/system</code> directory:</p>
+
+<pre><code>$ runyoufools --pattern test/system/ --command python
+</code></pre>
+
+<h1>
+<a id="my-tests-sometimes-fail-for-no-good-reason---what-to-do" class="anchor" href="#my-tests-sometimes-fail-for-no-good-reason---what-to-do" aria-hidden="true"><span class="octicon octicon-link"></span></a>My tests sometimes fail for no good reason - what to do?</h1>
+
+<p>In my experience, some system tests can fail without indicating an actual error. Some Selenium tests for example, may fail for some weird selenium bug that happens now and then, and has nothing to do with your code. To circumvent this, you can use retries. The rational is that if a test fails many times, it's probably an actual failure.</p>
+
+<pre><code>$ runyoufools --retries 3           # retry test 3 times before declaring a failue
+</code></pre>
+
+<p>By default, there is only one trial per test.</p>
+
+<h1>
+<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span class="octicon octicon-link"></span></a>TODO</h1>
+
+<ul>
+<li>setup and tear-down configuration</li>
+<li>Support different runners for different test types, e.g. <code>python</code> for Python, <code>perl</code> for perl. I'm not sure this is needed, but I may add it in the future.</li>
+<li>Integration with some reporting systems</li>
+</ul>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/haarcuba/runyoufools">RunYouFools!</a> is maintained by <a href="https://github.com/haarcuba">haarcuba</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
+
