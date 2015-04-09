@@ -3,9 +3,9 @@ require 'find'
 require 'colorize'
 
 def colorize_level( text )
-    text = text.sub( /info/, "info".white.bold )
-    text = text.sub( /error/, "error".red.bold )
-    text = text.sub( /warn/, "warn".yellow.bold )
+    text = text.sub( /info/, "INFO".white.bold )
+    text = text.sub( /error/, "ERROR".red.bold )
+    text = text.sub( /warn/, "WARN".yellow.bold )
 end
 
 def colorize_message( text )
@@ -14,7 +14,7 @@ def colorize_message( text )
 end
 
 module Logging
-    @logger = Logger.new( 'whiterabbit.log' )
+    @logger = Logger.new( 'runyoufools.log' )
 
     def self.logger
         @logger
