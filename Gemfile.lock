@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    runyoufools (0.0.1)
+    runyoufools (0.1.0)
       colorize
       subprocess
 

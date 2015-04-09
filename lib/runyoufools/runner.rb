@@ -5,7 +5,6 @@ module Runyoufools
 
 class Runner
 	attr_reader :results
-	attr_reader :success
 
 	def initialize( options )
         @options = options
@@ -40,6 +39,10 @@ class Runner
 	def message
 		{ true => 'OK', false => 'FAIL' }[ @success ]
 	end
+
+    def success
+        @success == true
+    end
 end
 
 end

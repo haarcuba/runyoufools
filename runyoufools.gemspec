@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Runyoufools::VERSION
   spec.authors       = ["Yoav Kleinberger"]
   spec.email         = ["haarcuba@gmail.com"]
-  spec.summary       = %q{a generic, language agnostic system test runner}
+  spec.summary       = %q{a generic, language agnostic test-runner for system tests}
   spec.description = <<EOF
 The basic idea behind runyoufools is that system tests should be simple
 scripts, whose exit code determines their success (or failure).
