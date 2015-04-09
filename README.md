@@ -42,7 +42,8 @@ So, to run all tests in the `test/system` directory:
 
 Note that if you do not include the final `/`, RunYouFools might try to run a file called `test/system.log`.
 
-If left unspecified, the pattern used will be 'test/', i.e. all files int he `test` directory.
+The pattern is *MANDATORY*.
+
 
 # What if I don't want my test files to be executable?
 
