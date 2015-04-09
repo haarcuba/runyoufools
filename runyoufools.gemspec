@@ -14,7 +14,7 @@ The purpose of runyoufools is to supply the user with a runner to run his/her
 *system* tests, no matter if these tests are Ruby, Python, C++, Perl -
 whatever. This is NOT a runner for unit tests - which have different solutions you can easily find.
 EOF
-  spec.homepage      = "https://github.com/haarcuba/runyoufools"
+  spec.homepage      = "http://haarcuba.github.io/runyoufools"
   spec.license       = "GPL-2"
 
   spec.files         = `git ls-files -z`.split("\x0")
