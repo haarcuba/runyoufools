@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
 
-gem 'subprocess'
-gem 'colorize'
-gem 'pry', group: :development
+# Specify your gem's dependencies in runyoufools.gemspec
+gemspec

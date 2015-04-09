@@ -1,18 +1,18 @@
 require 'fileutils'
-require 'lib/logging'
 require 'pp'
-require 'lib/test'
+
+module Runyoufools
 
 class Runner
 	attr_reader :results
 	attr_reader :success
 
 	def initialize( options )
-        log :info, "WHITE RABBIT starting"
+        Runyoufools.log :info, "WHITE RABBIT starting"
         @options = options
         @tests = []
         find_tests
-		log :info, "found #{@tests.count} tests:"
+		Runyoufools.log :info, "found #{@tests.count} tests:"
 		PP.pp @tests
 		@results = { fail: [], pass: [] }
 	end
@@ -41,4 +41,6 @@ class Runner
 	def message
 		{ true => 'OK', false => 'FAIL' }[ @success ]
 	end
+end
+
 end

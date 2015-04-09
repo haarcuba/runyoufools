@@ -1,10 +1,12 @@
 #!/usr/bin/env ruby
-require 'lib/runner.rb'
+require 'runyoufools'
 require 'optparse'
 require 'ostruct'
 require 'pry'
 
-def main( options )
+module Runyoufools
+
+def self.main( options )
     runner = Runner.new( options )
     start = Time.now
     runner.go
@@ -18,8 +20,9 @@ def main( options )
     say "#{runner.message}"
     say "#{durationMinutes} minutes."
 
-    log :info, "Story Test run finished (#{durationMinutes} minutes): #{runner.success}"
     exit( runner.success )
+end
+
 end
 
 options = OpenStruct.new
@@ -40,4 +43,4 @@ parser.on "--retries=NUMBER", '-r', 'number of retries (default: 1)' do |retries
 end
 
 parser.parse!
-main( options )
+Runyoufools.main( options )
