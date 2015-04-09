@@ -8,7 +8,6 @@ class Runner
 	attr_reader :success
 
 	def initialize( options )
-        Runyoufools.log :info, "WHITE RABBIT starting"
         @options = options
         @tests = []
         find_tests

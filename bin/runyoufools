@@ -25,16 +25,16 @@ end
 end
 
 options = OpenStruct.new
-options.pattern = /test/
+options.pattern = /test\//
 options.command = nil
 options.retries = 1
 
 parser = OptionParser.new
-parser.banner = "White Rabbit - a test runner"
+parser.banner = "RunYouFools! - a test runner"
 parser.on "--pattern=REGEX", "-p", "Pattern (regex) for looking for test files. Defaults to 'test'" do |pattern|
     options.pattern = Regexp.new pattern
 end
-parser.on "--command=COMMAND", "-c", "command to preceed test file if needed, e.g. if set to 'python', White Rabbit will use 'python test.py' instead of just 'test.py'" do |command|
+parser.on "--command=COMMAND", "-c", "command to preceed test file if needed, e.g. if set to 'python', RunYouFools! will use 'python test.py' instead of just 'test.py'" do |command|
     options.command = command
 end
 parser.on "--retries=NUMBER", '-r', 'number of retries (default: 1)' do |retries|
