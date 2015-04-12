@@ -49,12 +49,17 @@ no matter if these tests are Ruby, Python, C++, Perl - whatever - with appropria
 <pre><code>$ gem install runyoufools
 </code></pre>
 
-<p>Once it is installed, you run it:</p>
+<p>Once it is installed, run it with:</p>
 
 <pre><code>$ runyoufools --help
 </code></pre>
 
-<p>To get an explanation. Basically, you specify a filename pattern with <code>--pattern</code>,
+<p>To get an explanation. </p>
+
+<h1>
+<a id="basic-operation" class="anchor" href="#basic-operation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic Operation</h1>
+
+<p>Basically, you specify a filename pattern with <code>--pattern</code>,
 which RunYouFools uses to determine which files are tests (all relative the
 current directory). The pattern is a <em>regular expression</em>, <em>NOT</em> a "glob".
 Google regular expressions if you don't know what they are.</p>
@@ -67,6 +72,16 @@ Google regular expressions if you don't know what they are.</p>
 <p>Note that if you do not include the final <code>/</code>, RunYouFools might try to run a file called <code>test/system.log</code>.</p>
 
 <p>The pattern is <em>MANDATORY</em>.</p>
+
+<h1>
+<a id="adjusting-the-pattern" class="anchor" href="#adjusting-the-pattern" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adjusting The Pattern</h1>
+
+<p>If you're not entirely sure which pattern you should specify, use the <code>--list</code> option.</p>
+
+<pre><code>$ runyoufools --pattern test/system/ --list
+</code></pre>
+
+<p>This will tell RunYouFools to only <em>print</em> the test files it finds, <em>without</em> actually running them.</p>
 
 <h1>
 <a id="what-if-i-dont-want-my-test-files-to-be-executable" class="anchor" href="#what-if-i-dont-want-my-test-files-to-be-executable" aria-hidden="true"><span class="octicon octicon-link"></span></a>What if I don't want my test files to be executable?</h1>
