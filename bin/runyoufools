@@ -5,21 +5,21 @@ require 'ostruct'
 
 module Runyoufools
 
-def self.main( options )
-    runner = Runner.new( options )
-    start = Time.now
-    runner.go
-    durationMinutes = "%.2f" % ( ( Time.now - start ) / 60 )
-    puts "\n\n"
-    say "TESTS OVER - SUMMARY".white.bold
-    say_list runner.results[ :pass ]
-    say_list runner.results[ :fail ]
-    say "====== OVERALL ======".white.bold
-    say "#{runner.message}"
-    say "#{durationMinutes} minutes."
+    def self.main( options )
+        runner = Runner.new( options )
+        start = Time.now
+        runner.go
+        durationMinutes = "%.2f" % ( ( Time.now - start ) / 60 )
+        puts "\n\n"
+        say "TESTS OVER - SUMMARY".white.bold
+        say_list runner.results[ :pass ]
+        say_list runner.results[ :fail ]
+        say "====== OVERALL ======".white.bold
+        say "#{runner.message}"
+        say "#{durationMinutes} minutes."
 
-    exit( runner.success )
-end
+        exit( runner.success )
+    end
 
 end
 
@@ -27,6 +27,7 @@ options = OpenStruct.new
 options.pattern = nil
 options.command = nil
 options.retries = 1
+options.list = false
 
 parser = OptionParser.new
 parser.banner = "RunYouFools! - a test runner"
@@ -38,6 +39,9 @@ parser.on "--command=COMMAND", "-c", "command to preceed test file if needed, e.
 end
 parser.on "--retries=NUMBER", '-r', 'number of retries (default: 1)' do |retries|
     options.retries = retries.to_i
+end
+parser.on "--list", '-l', 'only list the tests found - do not actually run them' do |retries|
+    options.list = true
 end
 
 parser.parse!

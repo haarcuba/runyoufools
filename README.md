@@ -27,11 +27,15 @@ RunYouFools is a ruby gem:
 
     $ gem install runyoufools
 
-Once it is installed, you run it:
+Once it is installed, run it with:
 
     $ runyoufools --help
 
-To get an explanation. Basically, you specify a filename pattern with `--pattern`,
+To get an explanation. 
+
+# Basic Operation
+
+Basically, you specify a filename pattern with `--pattern`,
 which RunYouFools uses to determine which files are tests (all relative the
 current directory). The pattern is a *regular expression*, *NOT* a "glob".
 Google regular expressions if you don't know what they are.
@@ -44,6 +48,13 @@ Note that if you do not include the final `/`, RunYouFools might try to run a fi
 
 The pattern is *MANDATORY*.
 
+# Adjusting The Pattern
+
+If you're not entirely sure which pattern you should specify, use the `--list` option.
+
+    $ runyoufools --pattern test/system/ --list
+
+This will tell RunYouFools to only *print* the test files it finds, *without* actually running them.
 
 # What if I don't want my test files to be executable?
 

@@ -1,5 +1,4 @@
 require 'fileutils'
-require 'pp'
 
 module Runyoufools
 
@@ -11,7 +10,10 @@ class Runner
         @tests = []
         find_tests
 		Runyoufools.log :info, "found #{@tests.count} tests:"
-		PP.pp @tests
+		@tests.each do |test| 
+            puts test
+        end
+        exit( 0 ) if options.list
 		@results = { fail: [], pass: [] }
 	end
 
